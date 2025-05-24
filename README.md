@@ -45,5 +45,5 @@ This project is open-source under the MIT License.
 🤝 Contributions
 Want to improve this script? Feel free to submit pull requests or report issues! 🚀
 
-![Alt text](https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/vcn704md.png)
+![Alt text](https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/2kj9lnoz.png)
 ![Alt text](https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/ai93agcz.png)
