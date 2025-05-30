@@ -5,6 +5,7 @@ It ensures correct episode numbering, provides a preview before renaming, and lo
 
 ## 🚀 Features
 ✅ **Jellyfin-Friendly Naming** – Uses a standardized format for seamless indexing.  
+✅ **Name suggestion** – It will try to suggest a name for the show.  
 ✅ **Smart Episode Detection** – Extracts episode numbers while preserving formatting.  
 ✅ **Preview Before Renaming** – See proposed changes before proceeding.  
 ✅ **Automatic Logging** – Creates `rename-log.txt` for tracking renaming attempts.  
@@ -44,6 +45,10 @@ This project is open-source under the MIT License.
 
 🤝 Contributions
 Want to improve this script? Feel free to submit pull requests or report issues! 🚀
+
+<video src="https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/268mzh2m.mkv" controls>
+  Your browser does not support the video tag.
+</video>
 
 ![Alt text](https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/2kj9lnoz.png)
 ![Alt text](https://r2.e-z.host/90e02276-aaf6-441f-880e-09ebaabd2e85/ai93agcz.png)
