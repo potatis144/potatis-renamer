@@ -3,33 +3,28 @@ import re
 from datetime import datetime
 import time
 import sys
-import msvcrt
 
 ascii_header = r"""
                __          __  .__                                                                    
 ______   _____/  |______ _/  |_|__| ______         _______   ____   ____ _____    _____   ___________ 
 \____ \ /  _ \   __\__  \\   __\  |/  ___/  ______ \_  __ \_/ __ \ /    \\__  \  /     \_/ __ \_  __ \
-|  |_> >  <_> )  |  / __ \|  | |  |\___ \  /_____/  |  | \/\  ___/|   |  \/ __ \|  Y Y  \\  ___/|  | \/
+|  |_> >  <_> )  |  / __ \|  | |  |\___ \  /_____/  |  | \/\  ___/|   |  \/ __ \|  Y Y  \  ___/|  | \/
 |   __/ \____/|__| (____  /__| |__/____  >          |__|    \___  >___|  (____  /__|_|  /\___  >__|   
 |__|                    \/             \/                       \/     \/     \/      \/      \/       
 """
 
 def clean_name(name):
-    filler_match = re.search(r'\[Filler\]', name, re.IGNORECASE)
-    has_filler = filler_match.group(0) if filler_match else ''
-
+    filler_match = re.search(r'(\[Filler\])', name, re.IGNORECASE)
+    filler_tag = filler_match.group(1) if filler_match else ''
+    name = re.sub(r'\[Filler\]', '', name, flags=re.IGNORECASE)
     name = re.sub(r'\[.*?\]', '', name)
     name = re.sub(r'\(\d{4}\)', '', name)
     name = re.sub(r'\(.*?\)', '', name)
     name = re.sub(r'S\d{1,3}E\d{1,3}', '', name, flags=re.IGNORECASE)
     name = re.sub(r'[-_.]', ' ', name)
     name = re.sub(r'\s+', ' ', name)
-
-    cleaned = name.strip().strip('-')
-
-    if has_filler:
-        cleaned += f' {has_filler}'
-    return cleaned.strip()
+    name = name.strip().strip('-')
+    return f"{name} {filler_tag}".strip()
 
 def suggest_show_name(folder, files):
     folder_name = os.path.basename(os.path.dirname(folder))
@@ -157,13 +152,22 @@ def rename_files():
     print(f"\n📜 Log saved to: {log_path}")
     print(f"⏱️ Rename Time: {rename_duration:.2f} seconds")
 
-while True:
-    rename_files()
-    print("\n🔄 Press Enter to restart script, or Esc to exit.")
+if __name__ == "__main__":
     while True:
-        key = msvcrt.getch()
-        if key == b'\r':
-            break
-        elif key == b'\x1b':
-            print("🚪 Exiting script...")
-            sys.exit()
+        rename_files()
+        print("\n🔄 Press Enter to restart script, or Esc to exit.")
+        if os.name == "nt":
+            import msvcrt
+            while True:
+                key = msvcrt.getch()
+                if key == b'\r':
+                    break
+                elif key == b'\x1b':
+                    print("🚪 Exiting script...")
+                    sys.exit()
+        else:
+            try:
+                input("(Press Enter to continue, Ctrl+C to quit)")
+            except KeyboardInterrupt:
+                print("\n🚪 Exiting script...")
+                sys.exit()
